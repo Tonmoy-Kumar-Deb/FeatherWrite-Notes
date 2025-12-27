@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund/Cancellation - FeatherWrite Notes</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9);
+      padding:20px;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+    }
+    .logo{
+      width:90px;height:90px;margin-bottom:20px;
+    }
+    .logo svg{width:100%;height:100%}
+    .options{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      margin-bottom:40px;
+      align-items:center;
+    }
+    .btn{
+      width:180px;
+      height:60px;
+      background:linear-gradient(135deg,#4fc3f7,#01579b);
+      color:white;
+      border:none;
+      border-radius:16px;
+      font-size:1.2em;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(2,119,189,0.3);
+      transition:0.2s;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+    .form-container{
+      background:rgba(255,255,255,0.25);
+      backdrop-filter:blur(14px);
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 12px 32px rgba(2,119,189,0.3);
+      width:100%;
+      max-width:500px;
+      display:none;
+      margin-bottom:20px;
+    }
+    .form-container.active{
+      display:block;
+    }
+    label{
+      display:block;
+      margin:10px 0 5px;
+      color:#01579b;
+      font-weight:600;
+    }
+    input,textarea{
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid #4fc3f7;
+      margin-bottom:12px;
+    }
+    .submit-btn{
+      padding:12px;
+      background:linear-gradient(135deg,#4fc3f7,#01579b);
+      color:white;
+      border:none;
+      border-radius:12px;
+      font-size:1em;
+      cursor:pointer;
+      margin-top:10px;
+      width:100%;
+      box-shadow:0 8px 20px rgba(2,119,189,0.3);
+      transition:0.2s;
+    }
+    .submit-btn:hover{
+      transform:translateY(-2px);
+    }
+    .back-btn{
+      padding:12px;
+      background:linear-gradient(135deg,#4fc3f7,#01579b);
+      color:white;
+      border:none;
+      border-radius:12px;
+      font-size:1em;
+      cursor:pointer;
+      width:100%;
+      box-shadow:0 8px 20px rgba(2,119,189,0.3);
+      transition:0.2s;
+      margin-bottom:20px;
+    }
+    .back-btn:hover{
+      transform:translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" fill="none">
+      <defs>
+        <linearGradient id="featherGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#01579b"/>
+          <stop offset="100%" stop-color="#4fc3f7"/>
+        </linearGradient>
+      </defs>
+      <path d="M52 4 C34 6 18 18 12 32 C8 40 10 50 20 56 C28 60 40 56 44 48 C46 42 42 36 36 34 C28 32 22 36 18 42"
+            stroke="url(#featherGradient)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M36 10 C30 22 24 34 16 48"
+            stroke="url(#featherGradient)" stroke-width="2"/>
+    </svg>
+  </div>
+  <h1 style="color:#01579b;margin-bottom:20px;">Refund / Cancellation</h1>
+  <div class="options" id="optionButtons">
+    <button class="btn" onclick="showForm('refund')">Refund</button>
+    <button class="btn" onclick="showForm('cancellation')">Cancellation</button>
+    <button class="back-btn" onclick="history.back()">Back</button>
+  </div>
+
+  <!-- Refund Form -->
+  <div id="refundForm" class="form-container">
+    <h2 style="color:#01579b;">Request Refund</h2>
+    <form id="refundRequest">
+      <label for="refundToken">Token Number</label>
+      <input type="text" id="refundToken" required>
+      <label for="refundAmount">Amount Paid (₹)</label>
+      <input type="number" id="refundAmount" required>
+      <label for="refundReason">Reason</label>
+      <textarea id="refundReason" rows="3" required></textarea>
+      <p style="color:#01579b;margin:10px 0;">Please send a payment screenshot to WhatsApp after submitting this request.</p>
+      <button type="submit" class="submit-btn">Send Request</button><br><br>
+      <button type="button" class="back-btn" onclick="hideForm()">Back</button>
+    </form>
+  </div>
+
+  <!-- Cancellation Form -->
+  <div id="cancellationForm" class="form-container">
+    <h2 style="color:#01579b;">Request Cancellation</h2>
+    <form id="cancellationRequest">
+      <label for="cancelToken">Token Number</label>
+      <input type="text" id="cancelToken" required>
+      <label for="cancelReason">Reason</label>
+      <textarea id="cancelReason" rows="3" required></textarea>
+      <button type="submit" class="submit-btn">Send Request</button><br><br>
+      <button type="button" class="back-btn" onclick="hideForm()">Back</button>
+    </form>
+  </div>
+
+  <script>
+    function showForm(type) {
+      document.getElementById('optionButtons').style.display = 'none';
+      document.getElementById('refundForm').classList.remove('active');
+      document.getElementById('cancellationForm').classList.remove('active');
+      if (type === 'refund') {
+        document.getElementById('refundForm').classList.add('active');
+      } else {
+        document.getElementById('cancellationForm').classList.add('active');
+      }
+    }
+
+    function hideForm() {
+      document.getElementById('optionButtons').style.display = 'flex';
+      document.getElementById('refundForm').classList.remove('active');
+      document.getElementById('cancellationForm').classList.remove('active');
+    }
+
+    document.getElementById('refundRequest').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const token = document.getElementById('refundToken').value.trim();
+      const amount = document.getElementById('refundAmount').value.trim();
+      const reason = document.getElementById('refundReason').value.trim();
+
+      if (!token || !amount || !reason) {
+        alert('Please fill all fields.');
+        return;
+      }
+
+      const message = `Refund Request
+Token: ${token}
+Amount Paid: ₹${amount}
+Reason: ${reason}
+
+`;
+      const waURL = `https://wa.me/916901983382?text=${encodeURIComponent(message)}`;
+      window.open(waURL, '_blank');
+    });
+
+    document.getElementById('cancellationRequest').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const token = document.getElementById('cancelToken').value.trim();
+      const reason = document.getElementById('cancelReason').value.trim();
+
+      if (!token || !reason) {
+        alert('Please fill all fields.');
+        return;
+      }
+
+      const message = `Cancellation Request
+Token: ${token}
+Reason: ${reason}`;
+      const waURL = `https://wa.me/916901983382?text=${encodeURIComponent(message)}`;
+      window.open(waURL, '_blank');
+    });
+  </script>
+</body>
+</html>

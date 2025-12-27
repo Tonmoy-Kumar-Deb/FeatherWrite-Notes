@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeatherWrite Notes - Customer</title>
+    <style>
+    /* Stationery Items */
+.stationery-item {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 1;
+  animation: float 12s infinite ease-in-out alternate;
+}
+
+.pen {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055670.png');
+  animation-delay: 0s;
+}
+.notebook {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055688.png');
+  animation-delay: 2s;
+}
+.ruler {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055682.png');
+  animation-delay: 4s;
+}
+.pencil {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055671.png');
+  animation-delay: 6s;
+}
+.eraser {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055672.png');
+  animation-delay: 8s;
+}
+.highlighter {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055673.png');
+  animation-delay: 10s;
+}
+.stapler {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055674.png');
+  animation-delay: 12s;
+}
+.scissors {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055675.png');
+  animation-delay: 14s;
+}
+.tape {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055676.png');
+  animation-delay: 16s;
+}
+.glue {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055677.png');
+  animation-delay: 18s;
+}
+.marker {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055678.png');
+  animation-delay: 20s;
+}
+.calculator {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055679.png');
+  animation-delay: 22s;
+}
+.clipboard {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055680.png');
+  animation-delay: 24s;
+}
+.folder {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055681.png');
+  animation-delay: 26s;
+}
+.paperclip {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055683.png');
+  animation-delay: 28s;
+}
+.stapler2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055674.png');
+  animation-delay: 30s;
+}
+.scissors2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055675.png');
+  animation-delay: 32s;
+}
+.tape2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055676.png');
+  animation-delay: 34s;
+}
+.glue2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055677.png');
+  animation-delay: 36s;
+}
+.marker2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055678.png');
+  animation-delay: 38s;
+}
+.calculator2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055679.png');
+  animation-delay: 40s;
+}
+.clipboard2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055680.png');
+  animation-delay: 42s;
+}
+.folder2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055681.png');
+  animation-delay: 44s;
+}
+.paperclip2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055683.png');
+  animation-delay: 46s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, 15px) rotate(10deg);
+  }
+  50% {
+    transform: translate(10px, -10px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(-15px, 10px) rotate(15deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb, #90caf9);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* ================= HEADER ================= */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(1, 87, 155, 0.9);
+            color: white;
+            padding: 12px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(6px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 38px;
+            height: 38px;
+        }
+
+        .company-name {
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        .menu-btn {
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* ================= SLIDE MENU ================= */
+        nav {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    background: rgba(1, 87, 155, 0.95);
+    padding-top: 70px;
+    transition: .3s;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+        nav a {
+            display: block;
+            padding: 16px 24px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, .1);
+        }
+
+        /* ================= BODY ================= */
+        .container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+    /* Remove any extra margin or padding that might offset the centering */
+    margin: 0;
+    padding: 0;
+}
+
+.option {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #4fc3f7, #01579b);
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 800;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 18px 40px rgba(2, 119, 189, .45);
+    transition: .3s;
+    /* Ensure no margin or padding is pushing it away from center */
+    margin: 0;
+    padding: 0;
+}
+
+        .option:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 55px rgba(2, 119, 189, .55);
+        }
+
+        /* ================= TOKEN POPUP ================= */
+        .token-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .token-box {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-radius: 22px;
+            padding: 26px;
+            width: 85%;
+            max-width: 320px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(2, 119, 189, 0.45);
+            animation: pop .4s ease;
+        }
+
+        @keyframes pop {
+            from { transform: scale(.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .token-box h2 {
+            color: #01579b;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .token-box p {
+            color: #0277bd;
+            font-weight: 600;
+        }
+
+        .token-number {
+            margin: 16px 0;
+            padding: 14px;
+            font-size: 1.6em;
+            font-weight: 800;
+            letter-spacing: 3px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #4fc3f7, #01579b);
+            color: white;
+        }
+
+        .token-box button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 14px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 8px 20px rgba(2, 119, 189, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.75);
+            color: #01579b;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        .close-btn {
+            background: linear-gradient(135deg, #4fc3f7, #01579b);
+            color: white;
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .token-box small {
+            display: block;
+            margin-top: 12px;
+            color: #014f86;
+            font-weight: 600;
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .option {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stationery Items -->
+<div class="stationery-item pen" style="top:10%;left:15%"></div>
+<div class="stationery-item notebook" style="top:20%;left:70%"></div>
+<div class="stationery-item ruler" style="top:60%;left:25%"></div>
+<div class="stationery-item pencil" style="top:80%;left:60%"></div>
+<div class="stationery-item eraser" style="top:15%;left:40%"></div>
+<div class="stationery-item highlighter" style="top:35%;left:10%"></div>
+<div class="stationery-item stapler" style="top:50%;left:80%"></div>
+<div class="stationery-item scissors" style="top:75%;left:35%"></div>
+<div class="stationery-item tape" style="top:45%;left:55%"></div>
+<div class="stationery-item glue" style="top:25%;left:20%"></div>
+<div class="stationery-item marker" style="top:65%;left:75%"></div>
+<div class="stationery-item calculator" style="top:85%;left:10%"></div>
+<div class="stationery-item clipboard" style="top:30%;left:65%"></div>
+<div class="stationery-item folder" style="top:55%;left:45%"></div>
+<div class="stationery-item paperclip" style="top:70%;left:10%"></div>
+<div class="stationery-item stapler2" style="top:40%;left:30%"></div>
+<div class="stationery-item scissors2" style="top:60%;left:60%"></div>
+<div class="stationery-item tape2" style="top:20%;left:50%"></div>
+<div class="stationery-item glue2" style="top:80%;left:20%"></div>
+<div class="stationery-item marker2" style="top:10%;left:75%"></div>
+<div class="stationery-item calculator2" style="top:50%;left:15%"></div>
+<div class="stationery-item clipboard2" style="top:35%;left:40%"></div>
+<div class="stationery-item folder2" style="top:75%;left:50%"></div>
+<div class="stationery-item paperclip2" style="top:45%;left:25%"></div>
+    <!-- ================= HEADER ================= -->
+    <header>
+        <div class="logo">
+            <svg viewBox="0 0 64 64" fill="none">
+                <defs>
+                    <linearGradient id="featherGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#01579b"/>
+                        <stop offset="100%" stop-color="#4fc3f7"/>
+                    </linearGradient>
+                </defs>
+                <path d="M52 4 C34 6 18 18 12 32 C8 40 10 50 20 56 C28 60 40 56 44 48 C46 42 42 36 36 34 C28 32 22 36 18 42"
+                      stroke="url(#featherGradient)" stroke-width="3" stroke-linecap="round"/>
+                <path d="M36 10 C30 22 24 34 16 48"
+                      stroke="url(#featherGradient)" stroke-width="2"/>
+            </svg>
+            <div class="company-name">FeatherWrite Notes</div>
+        </div>
+        <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    </header>
+
+    <nav id="slideMenu">
+    <div>
+        <a href="/about.html">About</a>
+        <a href="/terms and conditions.html">Terms & Conditions</a>
+        <a href="/policy.html">Policy</a>
+        <a href="/refund cancellation.html">Refund/Cancellation</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <a href="/index.html" style="border-top: 1px solid rgba(255, 255, 255, .2); padding: 16px 24px;">Sign Out</a>
+</nav>
+
+    <!-- ================= BODY ================= -->
+    <div class="container">
+        <div class="option" onclick="applyWork()">Apply<br>for Work</div>
+    </div>
+
+    <!-- ================= TOKEN POPUP ================= -->
+    <div class="token-overlay" id="tokenOverlay">
+        <div class="token-box">
+            <h2>Application Submitted</h2>
+            <p>Your Token Number</p>
+            <div class="token-number" id="tokenValue">00000000</div>
+            <button class="copy-btn" onclick="copyToken()">Copy Token</button>
+            <button class="close-btn" onclick="closeToken()">OK</button>
+            <small>Use this token to track status & payments</small>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const m = document.getElementById("slideMenu");
+            m.style.left = m.style.left === "0px" ? "-260px" : "0px";
+        }
+
+        function applyWork() {
+            location.href = "form.html";
+        }
+
+        function showToken(token) {
+            document.getElementById("tokenValue").textContent = token;
+            document.getElementById("tokenOverlay").style.display = "flex";
+        }
+
+        function closeToken() {
+            document.getElementById("tokenOverlay").style.display = "none";
+        }
+
+        function copyToken() {
+            navigator.clipboard.writeText(
+                document.getElementById("tokenValue").textContent
+            );
+            // optional: small toast instead of alert if you want later
+        }
+
+        // Auto-open token popup when redirected from form.html
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedToken = localStorage.getItem("fw_token");
+            if (savedToken) {
+                showToken(savedToken);
+                localStorage.removeItem("fw_token");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FeatherWrite Notes</title>
+
+<style>
+/* Ensure buttons, text, and logo are above stationery items */
+.company, .slogan, .role-title, .btn, .popup, .feather-logo {
+  z-index: 10;
+  position: relative;
+}
+/* Stationery Items */
+.stationery-item {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 1;
+  animation: float 12s infinite ease-in-out alternate;
+}
+
+.pen {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055670.png');
+  animation-delay: 0s;
+}
+.notebook {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055688.png');
+  animation-delay: 2s;
+}
+.ruler {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055682.png');
+  animation-delay: 4s;
+}
+.pencil {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055671.png');
+  animation-delay: 6s;
+}
+.eraser {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055672.png');
+  animation-delay: 8s;
+}
+.highlighter {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055673.png');
+  animation-delay: 10s;
+}
+.stapler {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055674.png');
+  animation-delay: 12s;
+}
+.scissors {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055675.png');
+  animation-delay: 14s;
+}
+.tape {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055676.png');
+  animation-delay: 16s;
+}
+.glue {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055677.png');
+  animation-delay: 18s;
+}
+.marker {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055678.png');
+  animation-delay: 20s;
+}
+.calculator {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055679.png');
+  animation-delay: 22s;
+}
+.clipboard {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055680.png');
+  animation-delay: 24s;
+}
+.folder {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055681.png');
+  animation-delay: 26s;
+}
+.paperclip {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055683.png');
+  animation-delay: 28s;
+}
+.stapler2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055674.png');
+  animation-delay: 30s;
+}
+.scissors2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055675.png');
+  animation-delay: 32s;
+}
+.tape2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055676.png');
+  animation-delay: 34s;
+}
+.glue2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055677.png');
+  animation-delay: 36s;
+}
+.marker2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055678.png');
+  animation-delay: 38s;
+}
+.calculator2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055679.png');
+  animation-delay: 40s;
+}
+.clipboard2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055680.png');
+  animation-delay: 42s;
+}
+.folder2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055681.png');
+  animation-delay: 44s;
+}
+.paperclip2 {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1055/1055683.png');
+  animation-delay: 46s;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, 15px) rotate(10deg);
+  }
+  50% {
+    transform: translate(10px, -10px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(-15px, 10px) rotate(15deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9);
+height:100vh;overflow:hidden;position:relative;
+}
+
+/* Animated BG */
+body::before{
+content:'';
+position:fixed;inset:0;
+background:
+radial-gradient(circle at 20% 80%,rgba(135,206,250,.35),transparent 55%),
+radial-gradient(circle at 80% 20%,rgba(173,216,230,.35),transparent 55%);
+animation:bgFloat 20s ease-in-out infinite;
+z-index:-1;
+}
+@keyframes bgFloat{
+0%,100%{transform:translate(0,0)}
+50%{transform:translate(8px,-8px)}
+}
+
+/* Splash */
+#splashWrapper{
+position:absolute;inset:0;
+display:flex;flex-direction:column;
+align-items:center;justify-content:center;
+gap:16px;text-align:center;
+}
+
+.feather-logo{width:80px;height:80px;opacity:0}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes featherFly{
+0%{transform:translateY(-40px) scale(.6);opacity:0}
+50%{transform:translateY(0) scale(1)}
+100%{transform:translateY(20px)}
+}
+
+.company{font-size:2.4em;font-weight:700;color:#01579b;opacity:0}
+.slogan{color:#0277bd;opacity:0}
+
+/* Role Section */
+.role-section{
+position:absolute;inset:0;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+opacity:0;
+}
+
+.role-title{
+font-size:1.7em;font-weight:800;
+margin-bottom:26px;
+letter-spacing:.08em;
+text-transform:uppercase;
+background:linear-gradient(135deg,#01579b,#4fc3f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 6px 20px rgba(33,150,243,.35);
+}
+
+.role-card{
+width:100%;max-width:360px;
+padding:20px;border-radius:22px;
+background:rgba(255,255,255,.25);
+backdrop-filter:blur(18px);
+box-shadow:0 18px 45px rgba(2,119,189,.4);
+}
+
+.buttons{display:flex;flex-direction:column;gap:14px}
+
+.btn{
+padding:14px 32px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.75);
+background:linear-gradient(145deg,#fff,#c8e6ff);
+font-size:1.1em;font-weight:700;
+color:#014f86;
+cursor:pointer;width:100%;
+transition:.2s;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:scale(.98)}
+
+/* Popup */
+.popup{
+position:fixed;inset:0;
+background:rgba(0,0,0,.6);
+display:none;justify-content:center;align-items:center;
+}
+
+.popup-content{
+background:linear-gradient(145deg,#e3f2fd,#fff);
+padding:24px;border-radius:22px;
+width:320px;text-align:center;
+}
+
+.code-display{
+font-size:2em;font-family:monospace;
+margin:16px 0;padding:14px;
+background:#bbdefb;border-radius:14px;
+}
+
+.timer{color:#ff9800;font-weight:500}
+.timer.warning{animation:pulse 1s infinite}
+.timer.shake{animation:shake .4s}
+
+@keyframes pulse{50%{opacity:.6}}
+@keyframes shake{
+25%{transform:translateX(-4px)}
+50%{transform:translateX(4px)}
+}
+
+/* Input */
+.code-input{
+width:100%;padding:14px;
+font-size:1.2em;text-align:center;
+border:2px solid #4fc3f7;border-radius:12px;
+}
+
+/* Mobile only */
+@media(min-width:481px){body{display:none}}
+</style>
+</head>
+
+<body>
+<!-- Stationery Items -->
+<div class="stationery-item pen" style="top:10%;left:15%"></div>
+<div class="stationery-item notebook" style="top:20%;left:70%"></div>
+<div class="stationery-item ruler" style="top:60%;left:25%"></div>
+<div class="stationery-item pencil" style="top:80%;left:60%"></div>
+<div class="stationery-item eraser" style="top:15%;left:40%"></div>
+<div class="stationery-item highlighter" style="top:35%;left:10%"></div>
+<div class="stationery-item stapler" style="top:50%;left:80%"></div>
+<div class="stationery-item scissors" style="top:75%;left:35%"></div>
+<div class="stationery-item tape" style="top:45%;left:55%"></div>
+<div class="stationery-item glue" style="top:25%;left:20%"></div>
+<div class="stationery-item marker" style="top:65%;left:75%"></div>
+<div class="stationery-item calculator" style="top:85%;left:10%"></div>
+<div class="stationery-item clipboard" style="top:30%;left:65%"></div>
+<div class="stationery-item folder" style="top:55%;left:45%"></div>
+<div class="stationery-item paperclip" style="top:70%;left:10%"></div>
+<div class="stationery-item stapler2" style="top:40%;left:30%"></div>
+<div class="stationery-item scissors2" style="top:60%;left:60%"></div>
+<div class="stationery-item tape2" style="top:20%;left:50%"></div>
+<div class="stationery-item glue2" style="top:80%;left:20%"></div>
+<div class="stationery-item marker2" style="top:10%;left:75%"></div>
+<div class="stationery-item calculator2" style="top:50%;left:15%"></div>
+<div class="stationery-item clipboard2" style="top:35%;left:40%"></div>
+<div class="stationery-item folder2" style="top:75%;left:50%"></div>
+<div class="stationery-item paperclip2" style="top:45%;left:25%"></div>
+<!-- Splash -->
+<div id="splashWrapper">
+<svg class="feather-logo" id="featherLogo"
+     viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none">
+
+  <defs>
+    <linearGradient id="featherGradient"
+      x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#01579b"/>
+      <stop offset="100%" stop-color="#4fc3f7"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M52 4
+           C34 6 18 18 12 32
+           C8 40 10 50 20 56
+           C28 60 40 56 44 48
+           C46 42 42 36 36 34
+           C28 32 22 36 18 42"
+        stroke="url(#featherGradient)"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <path d="M36 10
+           C30 22 24 34 16 48"
+        stroke="url(#featherGradient)"
+        stroke-width="2"
+        stroke-linecap="round"/>
+</svg>
+<div class="company" id="company">FeatherWrite Notes</div>
+<div class="slogan" id="slogan">Perfect Notes Professional Work</div>
+</div>
+
+<!-- Role -->
+<div class="role-section" id="roleSection">
+<div class="role-title">Select your role</div>
+<div class="role-card">
+<div class="buttons">
+<button class="btn" onclick="goCustomer()">Customer</button>
+<button class="btn" onclick="goOwner()">Owner</button>
+</div>
+</div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h3>Owner Verification</h3>
+<div class="code-display" id="codeDisplay"></div>
+<div class="timer" id="timer">30 seconds remaining</div>
+<input class="code-input" id="codeInput" placeholder="Enter code">
+
+<div style="display:flex;gap:10px;margin-top:12px">
+<button class="btn" style="background:#ef5350;color:#fff" onclick="closePopup()">Cancel</button>
+<button class="btn" id="okBtn" onclick="verifyCode()">OK</button>
+<button class="btn" id="reloadBtn" onclick="generateNewCode()" style="display:none">Reload</button>
+</div>
+</div>
+</div>
+
+<!-- Tick Sound -->
+<audio id="tickSound" src="https://actions.google.com/sounds/v1/alarms/clock_tick.ogg"></audio>
+
+<script>
+/* ===== Element references ===== */
+const featherLogo   = document.getElementById("featherLogo");
+const splashWrapper = document.getElementById("splashWrapper");
+const company       = document.getElementById("company");
+const slogan        = document.getElementById("slogan");
+const roleSection   = document.getElementById("roleSection");
+
+const popup       = document.getElementById("popup");
+const codeDisplay = document.getElementById("codeDisplay");
+const timer       = document.getElementById("timer");
+const codeInput   = document.getElementById("codeInput");
+const okBtn       = document.getElementById("okBtn");
+const reloadBtn   = document.getElementById("reloadBtn");
+const tickSound   = document.getElementById("tickSound");
+
+/* ===== Splash animations ===== */
+
+// Feather
+setTimeout(() => {
+  featherLogo.style.opacity = 1;
+  featherLogo.style.animation = "featherFly 1.8s ease-out forwards";
+}, 400);
+
+// Company text
+setTimeout(() => {
+  company.style.opacity = 1;
+  company.style.animation = "fadeUp 1.2s ease forwards";
+}, 1800);
+
+// Slogan text
+setTimeout(() => {
+  slogan.style.opacity = 1;
+  slogan.style.animation = "fadeUp 1.2s ease forwards";
+}, 2400);
+
+// Keep splash for 6 seconds
+setTimeout(() => {
+  splashWrapper.style.transition = "opacity 0.8s ease";
+  splashWrapper.style.opacity = 0;
+
+  setTimeout(() => {
+    splashWrapper.style.display = "none";
+    roleSection.style.display = "flex";
+    roleSection.style.opacity = 1;
+  }, 800);
+
+}, 6000);
+
+
+/* ===== Navigation ===== */
+function goCustomer(){
+  location.href = "customer.html";
+}
+
+function goOwner(){
+  popup.style.display = "flex";
+  generateNewCode();
+}
+
+
+/* ===== Owner verification ===== */
+let currentCode = "";
+let timeLeft = 30;
+let timerInterval;
+
+function generateNewCode(){
+  // Generate 8-digit code
+  currentCode = Math.floor(10000000 + Math.random() * 90000000).toString();
+
+  // Show ORIGINAL code on screen
+  codeDisplay.textContent = currentCode;
+
+  codeInput.value = "";
+  codeInput.disabled = false;
+
+  okBtn.style.display = "inline-block";
+  reloadBtn.style.display = "none";
+
+  timeLeft = 30;
+  timer.textContent = "30 seconds remaining";
+  timer.classList.remove("warning","shake");
+
+  clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timer.textContent = timeLeft + " seconds remaining";
+
+    // Last 5 seconds effects
+    if(timeLeft <= 5 && timeLeft > 0){
+      timer.classList.add("warning","shake");
+
+      tickSound.currentTime = 0;
+      tickSound.play();
+
+      if(navigator.vibrate){
+        navigator.vibrate(200);
+      }
+    }
+
+    if(timeLeft <= 0){
+      clearInterval(timerInterval);
+      timer.textContent = "Time expired";
+      codeInput.disabled = true;
+      okBtn.style.display = "none";
+      reloadBtn.style.display = "inline-block";
+    }
+  }, 1000);
+}
+
+function verifyCode(){
+  // YOUR LOGIC:
+  // last 4 → reverse → + first 4
+  const expectedCode =
+    currentCode.slice(4,8).split("").reverse().join("") +
+    currentCode.slice(0,4);
+
+  if(codeInput.value === expectedCode){
+    location.href = "owner.html";
+  } else {
+    alert("Incorrect code");
+  }
+}
+
+function closePopup(){
+  clearInterval(timerInterval);
+  popup.style.display = "none";
+}
+</script>
+
+</body>
+</html>

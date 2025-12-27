@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - FeatherWrite Notes</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+      background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9);
+      padding:20px;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+    }
+    .logo{
+      width:90px;height:90px;margin-bottom:20px;
+    }
+    .logo svg{width:100%;height:100%}
+    .contact-container{
+      background:rgba(255,255,255,0.25);
+      backdrop-filter:blur(14px);
+      border-radius:20px;
+      padding:30px;
+      box-shadow:0 12px 32px rgba(2,119,189,0.3);
+      width:100%;
+      max-width:500px;
+      text-align:center;
+    }
+    h1{
+      color:#01579b;
+      margin-bottom:20px;
+    }
+    .contact-info{
+      margin:15px 0;
+      color:#0277bd;
+      font-weight:600;
+    }
+    .contact-info a{
+      color:#4fc3f7;
+      text-decoration:none;
+    }
+    .contact-info a:hover{
+      text-decoration:underline;
+    }
+    .btn{
+      margin-top:20px;
+      padding:12px 24px;
+      background:linear-gradient(135deg,#4fc3f7,#01579b);
+      color:white;
+      border:none;
+      border-radius:12px;
+      font-size:1em;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(2,119,189,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" fill="none">
+      <defs>
+        <linearGradient id="featherGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#01579b"/>
+          <stop offset="100%" stop-color="#4fc3f7"/>
+        </linearGradient>
+      </defs>
+      <path d="M52 4 C34 6 18 18 12 32 C8 40 10 50 20 56 C28 60 40 56 44 48 C46 42 42 36 36 34 C28 32 22 36 18 42"
+            stroke="url(#featherGradient)" stroke-width="3" stroke-linecap="round"/>
+      <path d="M36 10 C30 22 24 34 16 48"
+            stroke="url(#featherGradient)" stroke-width="2"/>
+    </svg>
+  </div>
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+    <div class="contact-info">
+      <p><strong>WhatsApp:</strong> <a href="https://wa.me/916901983382" target="_blank">+91 6901983382</a></p>
+    </div>
+    <div class="contact-info">
+      <p><strong>Email:</strong>
+  <a href="softink.notes@gmail.com">
+  softink.notes@gmail.com
+</a>
+</p>
+      <p style="font-size:0.9em;color:#01579b;"></p>
+    </div>
+    <div class="contact-info">
+      <p><strong>Instagram:</strong> <a href="https://www.instagram.com/alextechner?igsh=Zzg1OGo2MTBybDBq" target="_blank">@ALEXTECHNER</a></p>
+    </div>
+    <p style="color:#0277bd;<mar></mar>gin:20px 0;">For any queries or support, feel free to reach out to us through WhatsApp, Instagram, or email.</p>
+    <button class="btn" onclick="history.back()">Back</button>
+  </div>
+</body>
+</html>
